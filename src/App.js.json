@@ -1,0 +1,36 @@
+import React, { Component } from 'react';
+import LocForm from './LocForm';
+
+class App extends Component {
+  id = 2
+  state = {
+    information: [
+      {
+        id: 0,
+        name: 'dev1',
+   		lat:'0',
+		lon:'0',
+		time:"20200609120000"
+	  },
+    ]
+  }
+  handleCreate = (data) => {
+    const { information } = this.state;
+    this.setState({
+      information: information.concat({ id: this.id++, ...data })
+    })
+  }
+  render() {
+    const { information } = this.state;
+    return (
+      <div>
+        <LocForm
+          onCreate={this.handleCreate}
+        />
+        {JSON.stringify(information)}
+      </div>
+    );
+  }
+}
+
+export default App;
